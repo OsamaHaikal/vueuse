@@ -27,7 +27,11 @@ export function watchImmediate<T extends object>(
  *
  * @see https://vueuse.org/watchImmediate
  */
-export function watchImmediate<T = any>(source: T, cb: any, options?: Omit<WatchOptions, 'immediate'>) {
+export function watchImmediate<T = any>(
+  source: T | WatchSource | Array<WatchSource>,
+  cb: WatchCallback<any, any>,
+  options?: Omit<WatchOptions, 'immediate'>,
+): WatchStopHandle {
   return watch(
     source as any,
     cb,
